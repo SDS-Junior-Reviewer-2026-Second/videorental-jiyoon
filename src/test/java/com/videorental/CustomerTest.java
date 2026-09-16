@@ -19,12 +19,8 @@ public class CustomerTest {
     // 2. Movie를 Rental하지 않은 경우 테스트
     @Test
     public void statementForNoRental() {
-
-        // act
-        String statement = customer.statement();
-
         // assert
-        assertThat(statement).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
+        assertThat(customer.statement()).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
                 + "Amount owed is 0.0\n"
                 + "You earned 0 frequent renter pointers");
     }
@@ -40,11 +36,8 @@ public class CustomerTest {
         Rental rental = new Rental(movie, daysRented);
         customer.addRental(rental);
 
-        // act
-        String statement = customer.statement();
-
         // assert
-        assertThat(statement).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
+        assertThat(customer.statement()).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
                 + "\t2.0(TITLE_NOT_IMPORTANT)\n"
                 + "Amount owed is 2.0\n"
                 + "You earned 1 frequent renter pointers");
@@ -61,11 +54,8 @@ public class CustomerTest {
         Rental rental = new Rental(movie, daysRented);
         customer.addRental(rental);
 
-        // act
-        String statement = customer.statement();
-
         // assert
-        assertThat(statement).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
+        assertThat(customer.statement()).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
                 + "\t3.5(TITLE_NOT_IMPORTANT)\n"
                 + "Amount owed is 3.5\n"
                 + "You earned 1 frequent renter pointers");
@@ -81,11 +71,8 @@ public class CustomerTest {
         Rental rental = new Rental(movie, daysRented);
         customer.addRental(rental);
 
-        // act
-        String statement = customer.statement();
-
         // assert
-        assertThat(statement).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
+        assertThat(customer.statement()).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
                 + "\t3.0(TITLE_NOT_IMPORTANT)\n"
                 + "Amount owed is 3.0\n"
                 + "You earned 1 frequent renter pointers");
@@ -102,11 +89,8 @@ public class CustomerTest {
         Rental rental = new Rental(movie, daysRented);
         customer.addRental(rental);
 
-        // act
-        String statement = customer.statement();
-
         // assert
-        assertThat(statement).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
+        assertThat(customer.statement()).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
                 + "\t3.0(TITLE_NOT_IMPORTANT)\n"
                 + "Amount owed is 3.0\n"
                 + "You earned 1 frequent renter pointers");
@@ -123,11 +107,8 @@ public class CustomerTest {
         Rental rental = new Rental(movie, daysRented);
         customer.addRental(rental);
 
-        // act
-        String statement = customer.statement();
-
         // assert
-        assertThat(statement).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
+        assertThat(customer.statement()).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
                 + "\t1.5(TITLE_NOT_IMPORTANT)\n"
                 + "Amount owed is 1.5\n"
                 + "You earned 1 frequent renter pointers");
@@ -143,11 +124,8 @@ public class CustomerTest {
         Rental rental = new Rental(movie, daysRented);
         customer.addRental(rental);
 
-        // act
-        String statement = customer.statement();
-
         // assert
-        assertThat(statement).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
+        assertThat(customer.statement()).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
                 + "\t6.0(TITLE_NOT_IMPORTANT)\n"
                 + "Amount owed is 6.0\n"
                 + "You earned 2 frequent renter pointers");
@@ -164,9 +142,7 @@ public class CustomerTest {
         customer.addRental(new Rental(newReleaseMovie, 4));
         customer.addRental(new Rental(childrensMovie, 4));
 
-        String statement = customer.statement();
-
-        assertThat(statement).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
+        assertThat(customer.statement()).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
                 + "\t2.0(TITLE_NOT_IMPORTANT)\n"
                 + "\t12.0(TITLE_NOT_IMPORTANT)\n"
                 + "\t3.0(TITLE_NOT_IMPORTANT)\n"
