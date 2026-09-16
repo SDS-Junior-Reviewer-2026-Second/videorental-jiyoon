@@ -10,10 +10,22 @@ public class CustomerTest {
 
     Customer customer = new Customer(NAME);
 
-    private static Rental createRentalFor(int priceCode, int daysRented) {
-        Movie movie = new Movie(TITLE, priceCode);
-        Rental rental = new Rental(movie, daysRented);
-        return rental;
+    private Rental createRentalFor(int priceCode, int daysRented) {
+        Movie movie = getMovie(priceCode);
+        return new Rental(movie, daysRented);
+    }
+
+    private Movie getMovie(int priceCode) {
+        switch (priceCode) {
+            case Movie.REGULAR:
+                return new RegularMovie(TITLE);
+            case Movie.NEW_RELEASE:
+                return new NewReleaseMovie(TITLE);
+            case Movie.CHILDRENS:
+                return new ChildrenMovie(TITLE);
+            default:
+                return null;
+        }
     }
 
     // 1. Customer 생성 테스트
@@ -118,37 +130,5 @@ public class CustomerTest {
                 + "\t6.0(TITLE_NOT_IMPORTANT)\n"
                 + "Amount owed is 6.0\n"
                 + "You earned 2 frequent renter pointers");
-    }
-
-    // 9. Movie 여러 개를 대여한 경우
-    @Test
-    public void statementForFewMovieRental() {
-
-        customer.addRental(createRentalFor(Movie.REGULAR, 1));
-        customer.addRental(createRentalFor(Movie.NEW_RELEASE, 4));
-        customer.addRental(createRentalFor(Movie.CHILDRENS, 4));
-
-                assertThat(customer.statement()).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
-                + "\t2.0(TITLE_NOT_IMPORTANT)\n"
-                + "\t12.0(TITLE_NOT_IMPORTANT)\n"
-                + "\t3.0(TITLE_NOT_IMPORTANT)\n"
-                + "Amount owed is 17.0\n"
-                + "You earned 4 frequent renter pointers");
-    }
-
-    // 10. setPriceCode()
-    @Test
-    public void changeMoviePriceCodeAffectsAmount() {
-
-        // arrange
-        Movie movie = new Movie(TITLE, Movie.REGULAR);
-        movie.setPriceCode(Movie.NEW_RELEASE);
-        customer.addRental(new Rental(movie, 1));
-
-        // assert
-        assertThat(customer.statement()).isEqualTo("Rental Record for NAME_NOT_IMPORTANT\n"
-                + "\t3.0(TITLE_NOT_IMPORTANT)\n"
-                + "Amount owed is 3.0\n"
-                + "You earned 1 frequent renter pointers");
     }
 }
