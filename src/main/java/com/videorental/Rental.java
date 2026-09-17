@@ -1,23 +1,27 @@
 package com.videorental;
 
 class Rental {
-	private static Movie movie;
-	private static int daysRented;
+	private Movie movie;
+	private int daysRented;
 
 	public Rental(Movie movie, int daysRented) {
 		this.movie = movie;
 		this.daysRented = daysRented;
 	}
 
-	public static int getDaysRented() {
+	public int getDaysRented() {
 		return daysRented;
 	}
 
-	public static Movie getMovie() {
+	public Movie getMovie() {
 		return movie;
 	}
 
 	double getCharge() {
-		return getChargeFor(daysRented);
+		return movie.getChargeFor(daysRented);
+	}
+
+	int getFrequentRenterPointsFor() {
+		return movie.getFrequentRenterPointsFor(daysRented);
 	}
 }

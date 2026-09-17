@@ -39,7 +39,7 @@ class Customer {
 	private String getRentalLineReport() {
 		String result = "";
 		for ( Rental rental : rentals ) {
-			result += "\t" +  rental.getCharge() + "(" + Rental.getMovie().getTitle() + ")" + "\n";
+			result += "\t" +  rental.getCharge() + "(" + rental.getMovie().getTitle() + ")" + "\n";
 		}
 		return result;
 	}
